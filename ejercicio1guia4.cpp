@@ -69,12 +69,5 @@ int main() {
     usuario->prestar_libro(libro2);
     cout << "Datos del usuario: " << endl;
     usuario->mostrar_informacion();
-
-    delete autor1;
-    delete autor2;
-    delete libro1;
-    delete libro2;
-    delete usuario;
-
     return 0;
 }
