@@ -10,18 +10,17 @@ protected:
     string numeroTarjeta;
     string codigoSeguridad;
 public:
-    Cliente(string n, string d, string t, string e, string nt, string cs)
-        : nombre(n), direccion(d), telefono(t), email(e), numeroTarjeta(nt), codigoSeguridad(cs) {}
-    string getNombre() const { return nombre; }
-    string getDireccion() const { return direccion; }
-    string getTelefono() const { return telefono; }
-    string getEmail() const { return email; }
-    string getNumeroTarjeta() const { return numeroTarjeta; }
-    string getCodigoSeguridad() const { return codigoSeguridad; }
+    Cliente(string n, string d, string t, string e, string nt, string cs) : nombre(n), direccion(d), telefono(t), email(e), numeroTarjeta(nt), codigoSeguridad(cs) {}
+    string getNombre() { return nombre; }
+    string getDireccion() { return direccion; }
+    string getTelefono() { return telefono; }
+    string getEmail() { return email; }
+    string getNumeroTarjeta() { return numeroTarjeta; }
+    string getCodigoSeguridad() { return codigoSeguridad; }
 };
 class ClienteSeguro : public Cliente {
 private:
-    string encriptar(string data) const {
+    string encriptar(string data) {
         string encrypted = data;
         char key = 'K';
         for (size_t i = 0; i < data.size(); ++i) {
@@ -29,19 +28,18 @@ private:
         }
         return encrypted;
     }
-    string desencriptar(string data) const {
+    string desencriptar(string data) {
         return encriptar(data);
     }
 public:
-    ClienteSeguro(string n, string d, string t, string e, string nt, string cs)
-        : Cliente(n, d, t, e, nt, cs) {}
-    string getTarjetaEncriptada() const {
+    ClienteSeguro(string n, string d, string t, string e, string nt, string cs) : Cliente(n, d, t, e, nt, cs) {}
+    string getTarjetaEncriptada() {
         return encriptar(numeroTarjeta);
     }
-    string getCodigoSeguridadEncriptado() const {
+    string getCodigoSeguridadEncriptado() {
         return encriptar(codigoSeguridad);
     }
-    bool verificarAutenticidad(string nombre, string codigo) const {
+    bool verificarAutenticidad(string nombre, string codigo) {
         return (this->nombre == nombre && this->codigoSeguridad == codigo);
     }
 };
