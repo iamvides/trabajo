@@ -11,16 +11,16 @@ protected:
     string email;
 
 public:
-    Cliente(const string &n, const string &d, const string &t, const string &e) : nombre(n), direccion(d), telefono(t), email(e) {}
+    Clientestring &n, string &d, string &t, string &e) : nombre(n), direccion(d), telefono(t), email(e) {}
 
     virtual ~Cliente() {
         cout << "Destructor de Cliente llamado." << endl;
     }
 
-    string getNombre() const { return nombre; }
-    string getDireccion() const { return direccion; }
-    string getTelefono() const { return telefono; }
-    string getEmail() const { return email; }
+    string getNombre() { return nombre; }
+    string getDireccion() { return direccion; }
+    string getTelefono() { return telefono; }
+    string getEmail() { return email; }
 };
 
 class ClienteSeguro : public Cliente {
@@ -29,15 +29,15 @@ private:
     string codigoSeguridad;
 
 public:
-    ClienteSeguro(const string &n, const string &d, const string &t, const string &e, const string &nt, const string &cs)
+    ClienteSeguro(string &n, string &d, string &t, string &e, string &nt, string &cs)
         : Cliente(n, d, t, e), numeroTarjeta(nt), codigoSeguridad(cs) {}
 
     ~ClienteSeguro() {
         cout << "Destructor de ClienteSeguro llamado." << endl;
     }
 
-    string getNumeroTarjeta() const { return numeroTarjeta; }
-    string getCodigoSeguridad() const { return codigoSeguridad; }
+    string getNumeroTarjeta() { return numeroTarjeta; }
+    string getCodigoSeguridad() { return codigoSeguridad; }
 };
 
 int main() {
