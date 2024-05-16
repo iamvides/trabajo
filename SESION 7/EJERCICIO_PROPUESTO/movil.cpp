@@ -11,11 +11,11 @@ public:
 
     Movil(string marca, string modelo, string sistema_operativo)
         : marca(marca), modelo(modelo), sistema_operativo(sistema_operativo) {
-        cout << "Movil constructor called" << endl;
+        cout << "Se ejecuta el constructor de Movil" << endl;
     }
 
     ~Movil() {
-        cout << "Movil destructor called" << endl;
+        cout << "Se ejecuta el destructor de Movil" << endl;
     }
 };
 
@@ -25,11 +25,11 @@ public:
 
     Telefono(string marca, string modelo, string sistema_operativo, int numero_telefono)
         : Movil(marca, modelo, sistema_operativo), numero_telefono(numero_telefono) {
-        cout << "Telefono constructor called" << endl;
+        cout << "Se ejecuta el constructor de Telefono" << endl;
     }
 
     ~Telefono() {
-        cout << "Telefono destructor called" << endl;
+        cout << "Se ejecuta el destructor de Telefono" << endl;
     }
 };
 
@@ -39,11 +39,11 @@ public:
 
     Tablet(string marca, string modelo, string sistema_operativo, float pantalla_tactil_tamano)
         : Movil(marca, modelo, sistema_operativo), pantalla_tactil_tamano(pantalla_tactil_tamano) {
-        cout << "Tablet constructor called" << endl;
+        cout << "Se ejecuta el constructor de Telefono" << endl;
     }
 
     ~Tablet() {
-        cout << "Tablet destructor called" << endl;
+        cout << "Se ejecuta el destructor de Tablet" << endl;
     }
 };
 
