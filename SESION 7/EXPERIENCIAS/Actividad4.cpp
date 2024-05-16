@@ -13,15 +13,14 @@ protected:
     string codigoSeguridad;
 
 public:
-    Cliente(const string &n, const string &d, const string &t, const string &e, const string &nt, const string &cs)
-        : nombre(n), direccion(d), telefono(t), email(e), numeroTarjeta(nt), codigoSeguridad(cs) {}
+    Cliente(string &n, string &d, string &t, string &e, string &nt, string &cs : nombre(n), direccion(d), telefono(t), email(e), numeroTarjeta(nt), codigoSeguridad(cs) {}
 
-    string getNombre() const { return nombre; }
-    string getDireccion() const { return direccion; }
-    string getTelefono() const { return telefono; }
-    string getEmail() const { return email; }
-    string getNumeroTarjeta() const { return numeroTarjeta; }
-    string getCodigoSeguridad() const { return codigoSeguridad; }
+    string getNombre() { return nombre; }
+    string getDireccion() { return direccion; }
+    string getTelefono() { return telefono; }
+    string getEmail() { return email; }
+    string getNumeroTarjeta() { return numeroTarjeta; }
+    string getCodigoSeguridad() { return codigoSeguridad; }
 };
 
 // Herencia pública
