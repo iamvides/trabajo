@@ -5,11 +5,11 @@ class Vehiculo {
 public:
     string marca;
     string modelo;
-    int year;
+    int ano;
     float precio;
 
-    Vehiculo(string m, string md, int y, float p) :
-        marca(m), modelo(md), year(y), precio(p) {}
+    Vehiculo(string m, string md, int a, float p) :
+        marca(m), modelo(md), ano(a), precio(p) {}
 };
 
 class Automovil : public Vehiculo {
@@ -17,16 +17,16 @@ public:
     int numPuertas;
     string tipoCombustible;
 
-    Automovil(string _marca, string _modelo, int _year, float _price, int np, string tc) :
-        Vehiculo(_marca, _modelo, _year, _price), numPuertas(np), tipoCombustible(tc) {}
+    Automovil(string _marca, string _modelo, int _ano, float _precio, int np, string tc) :
+        Vehiculo(_marca, _modelo, _ano, _precio), numPuertas(np), tipoCombustible(tc) {}
 };
 
 class Motocicleta : public Vehiculo {
 public:
     float cilindrada;
 
-    Motocicleta(string _marca, string _modelo, int _year, float _price, float c) :
-        Vehiculo(_marca, _modelo, _year, _price), cilindrada(c) {}
+    Motocicleta(string _marca, string _modelo, int _ano, float _precio, float c) :
+        Vehiculo(_marca, _modelo, _ano, _precio), cilindrada(c) {}
 };
 
 int main() {
@@ -34,11 +34,11 @@ int main() {
     Motocicleta motoExample("Honda", "CBR600RR", 2019, 15000.0, 599.0);
 
     std::cout << "Automovil: " << autoExample.marca << ", " << autoExample.modelo <<
-        ", " << autoExample.year << ", " << autoExample.precio << ", " <<
+        ", " << autoExample.ano << ", " << autoExample.precio << ", " <<
         autoExample.numPuertas << ", " << autoExample.tipoCombustible << std::endl;
 
     std::cout << "Motocicleta: " << motoExample.marca << ", " << motoExample.modelo <<
-        ", " << motoExample.year << ", " << motoExample.precio << ", " <<
+        ", " << motoExample.ano << ", " << motoExample.precio << ", " <<
         motoExample.cilindrada << std::endl;
 
     return 0;
