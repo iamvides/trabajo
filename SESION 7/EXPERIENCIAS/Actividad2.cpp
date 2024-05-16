@@ -13,7 +13,7 @@ protected:
     string codigoSeguridad;
 
 protected:
-    string encriptar(const string &data) const {
+    string encriptar(string &data) {
         string encrypted = data;
         char key = 'K'; 
         for (size_t i = 0; i < data.size(); ++i) {
