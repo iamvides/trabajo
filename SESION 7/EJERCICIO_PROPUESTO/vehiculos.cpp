@@ -33,13 +33,13 @@ int main() {
     Automovil autoExample("Toyota", "Corolla", 2020, 20000.0, 4, "Gasoline");
     Motocicleta motoExample("Honda", "CBR600RR", 2019, 15000.0, 599.0);
 
-    std::cout << "Automovil: " << autoExample.marca << ", " << autoExample.modelo <<
+    cout << "Automovil: " << autoExample.marca << ", " << autoExample.modelo <<
         ", " << autoExample.ano << ", " << autoExample.precio << ", " <<
-        autoExample.numPuertas << ", " << autoExample.tipoCombustible << std::endl;
+        autoExample.numPuertas << ", " << autoExample.tipoCombustible << endl;
 
-    std::cout << "Motocicleta: " << motoExample.marca << ", " << motoExample.modelo <<
+    cout << "Motocicleta: " << motoExample.marca << ", " << motoExample.modelo <<
         ", " << motoExample.ano << ", " << motoExample.precio << ", " <<
-        motoExample.cilindrada << std::endl;
+        motoExample.cilindrada << endl;
 
     return 0;
 }
