@@ -1,5 +1,5 @@
-#ifndef MEDICO.H
-#define MEDICO.H
+#ifndef MEDICO_H
+#define MEDICO_H
 #include <iostream>
 #include "Base.h"
 using namespace std; 
