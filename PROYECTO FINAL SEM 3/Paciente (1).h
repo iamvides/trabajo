@@ -13,20 +13,18 @@ class Paciente : public Base {
         string fechaU = "primera vez";
         string enfermedad = "";
         string especialidad = "general";
-        string examenU = "";
-        string operacionN = "";
         Medico** Doctores; // Arreglo de punteros a objetos Medico
         int numDoctores; // Número de doctores asignados
 
     public:
         // Constructor por defecto
-        Paciente() : Base(), fechaU(""), enfermedad(""), especialidad(""), examenU(""), operacionN(""), Doctores(new Medico*[1]), numDoctores(0) {}
+        Paciente() : Base(), fechaU(""), enfermedad(""), especialidad(""), Doctores(new Medico*[1]), numDoctores(0) {}
 
         // Constructor parametrizado
         Paciente(int _dni, int _codigo, string _nombre, string _apellidoP, string _apellidoM,
-                 string _fechaU, string _enfermedad, string _especialidad, string _examenU, string _operacionN, Medico** _Doctores, int _numDoctores)
+                 string _fechaU, string _enfermedad, string _especialidad, Medico** _Doctores, int _numDoctores)
                  : Base(_dni, _codigo, _nombre, _apellidoP, _apellidoM),
-                   fechaU(_fechaU), enfermedad(_enfermedad), especialidad(_especialidad), examenU(_examenU), operacionN(_operacionN) {
+                   fechaU(_fechaU), enfermedad(_enfermedad), especialidad(_especialidad) {
             Doctores = new Medico*[_numDoctores];
             for (int i = 0; i < _numDoctores; i++) {
                 Doctores[i] = _Doctores[i];
@@ -43,14 +41,6 @@ class Paciente : public Base {
             enfermedad = e;
         }
 
-        void setExamenU(string ex) {
-            examenU = ex;
-        }
-
-        void setOperacionN(string op) {
-            operacionN = op;
-        }
-
         // Métodos getters para acceder a los atributos específicos de Paciente
         string getFechaU() {
             return fechaU;
@@ -58,14 +48,6 @@ class Paciente : public Base {
 
         string getEnfermedad() {
             return enfermedad;
-        }
-
-        string getExamenU() {
-            return examenU;
-        }
-
-        string getOperacionN() {
-            return operacionN;
         }
 
         string getEspecialidad() {
@@ -83,8 +65,6 @@ class Paciente : public Base {
             cout << "Fecha de última visita: " << getFechaU() << endl;
             cout << "Enfermedad: " << getEnfermedad() << endl;
             cout << "Especialidad: " << getEspecialidad() << endl;
-            cout << "Examen de urgencia: " << getExamenU() << endl;
-            cout << "Operación necesaria: " << getOperacionN() << endl;
             cout << "Médicos asignados: " << endl;
             for (int i = 0; i < numDoctores; i++) {
                 // Muestra el nombre de los médicos asignados con la misma especialidad
