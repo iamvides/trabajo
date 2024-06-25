@@ -4,6 +4,7 @@
 #include <fstream>
 using namespace std;
 
+string enfermedadT;
 // Plantilla de función para buscar y comparar dos valores
 template<typename N>
 bool find(N buscar, N econ) {
@@ -45,12 +46,13 @@ bool validarEnfermedad(string especialidad) {
         cout << "Error al abrir el archivo " << archivoNombre << endl;
         return false; // Si no se pudo abrir el archivo, retornar falso
     }
-    
+    cin.ignore();
     bool valido = false;
     string enfermedad;
+  
     do {
         // Pedir al usuario que ingrese la enfermedad que desea validar
-        cout << "Ingrese de que padece: "<<endl;
+          cout << "Ingrese de que padece: "<<endl;
         getline(cin, enfermedad);
         
         // Realizar la comparación de la enfermedad ingresada con las enfermedades leídas
@@ -65,13 +67,13 @@ bool validarEnfermedad(string especialidad) {
             cout << "Enfermedad no valida para esta especialidad. Intente nuevamente." << endl;
         }
     } while (!valido); // Repetir hasta que se ingrese una enfermedad válida
-    
+    enfermedadT=enfermedad;
     return true; // Si se encontró la enfermedad válida, retornar true
 }
 
 int main() {
-    int dni,codigo;
-    string password;
+    int dni=0,codigo;
+    string password="password";
     string  nombre, apellidoP, apellidoM, fechaU, enfermedad, especialidad;
     Medico* Doctores[10]; // Arreglo de 10 punteros a objetos Medico
     // Creación de objetos Medico
@@ -85,7 +87,7 @@ int main() {
         
         int contador = 0;
 
-        while (contador < 10 && archivo) {
+        while (contador < 10) {
             int dni, codigo;
             string nombre, apellidoP, apellidoM, especialidad, turno;
 
@@ -128,35 +130,37 @@ int main() {
             }
         } 
         if(ele==2) {
-            // Proceso para sacar una cita
-            bool validar = false;
-
-            // Ingresar datos del paciente
-            cout<<"ingrese su dni: ";
-            cin>>dni;
-            do {
-                try {
-                    cout << "Ingrese el codigo del doctor: ";
+            bool validar=false;
+                cout<<"ingrese su dni:  ";
+                cin>>dni;
+                do {
+                string conti="n";
+                do
+                {
+                    try {
+                    cout << "Ingrese el codigo del doctor: "; 
                     // Intentar leer un código de doctor válido
                     if (!(cin >> codigo)) {
                         throw runtime_error("Dato invalido, vuelva a intentar.");
                     }
-                    validar = false;
-                    for (int i = 0; i < 10; i++) {
-                        if (Doctores[i] != nullptr) {
-                            validar = find(codigo, Doctores[i]->getCodigo());
-                            if (validar) {
-                                break;
-                            }
-                        }
+                    else{
+                        conti="s";
                     }
-                } catch ( runtime_error& e) {
-                    cerr << e.what() << endl;
-                    // Limpiar el error de entrada
+                    }
+                    catch ( runtime_error& e) {
                     cin.clear();
                     cin.ignore();
-                    validar = false;
                 }
+                } while (conti != "s");
+                validar = false;
+                    for (int i = 0; i < 10; i++) {
+                        validar = find(codigo, Doctores[i]->getCodigo());
+                        if (validar) {
+                            break;
+                        }
+                    }
+                    
+              
             } while (validar == false);
             cout << "Ingrese su nombre: ";
             cin >> nombre;
@@ -177,21 +181,44 @@ int main() {
                     }
                 }
             } while (validar == false);
-
             validar = validarEnfermedad(especialidad);
-           
             // Crear un nuevo objeto Paciente y agregarlo al arreglo
-            pacientes[contador] = new Paciente(dni, codigo, nombre, apellidoP, apellidoM, fechaU, enfermedad, especialidad, "", "", Doctores, 10);
+            pacientes[contador] = new Paciente(dni, codigo, nombre, apellidoP, apellidoM, fechaU, enfermedadT, especialidad, Doctores, 10);
+            string filename = "Pacientes.txt";
+            ofstream archivo(filename);
+            if (archivo.is_open()) {
+                archivo << "dni: " << pacientes[contador]->getDni() << endl;
+                archivo << "codigo del doctor: " << pacientes[contador]->getCodigo() << endl;
+                archivo << "nombre: " <<pacientes[contador]->getNombre() << endl;
+                archivo << "apellido Paterno: " << pacientes[contador]->getApellidoP() << endl;
+                archivo << "apellido Materno: " << pacientes[contador]->getApellidoM() << endl;
+                archivo << "fecha de ultima visita: " << pacientes[contador]->getFechaU() << endl;
+                archivo << "enfermedad: " << pacientes[contador]->getEnfermedad() << endl;
+                archivo << "especialidad: " << pacientes[contador]->getEspecialidad() << endl;
+                archivo.close();
+            }      
+            else {
+                cout << "Error al crear el archivo " << filename << endl;
+            }
             contador += 1;
         }
         if (ele==3){
             do
             {
-                cout<<"ingrese laconraseña para validar su identidad"<<endl;
+                cout<<"ingrese el password para validar su identidad"<<endl;
                 cin>>password;
-            } while (password!="contraseña");
-            for (int i=0;i<contador;i++){
-                pacientes[i]->MostrarDetalles();
+            } while (password!="password");
+            ifstream archivo("Pacientes.txt");
+            if (archivo.is_open()) {
+                string linea;
+                while (getline(archivo, linea)) {
+                    cout<<linea<<endl;
+                }
+                archivo.close();
+            } 
+            else {
+                cout << "Error al abrir el archivo Pacientes.txt" << endl;
+                
             }
         }
         // Preguntar si desea continuar
